@@ -12,34 +12,39 @@
 // HINT: recycling code is never bad practice.
 // This functions should check the integrity of the parameters and pass true/false
 function checkParamsFn(year, month, day) {
-  if (!Number.isInteger(year)) return false;
-  else if (!Number.isInteger(month)) return false;
-  else if (!Number.isInteger(day)) return false;
-  else return true;
+  // Write your code here
+  let x=Number.isInteger(year);
+  let y=Number.isInteger(month);
+  let z=Number.isInteger(day);
+  if (x&&y&&z)return true
+  return false
 }
-console.log(checkParamsFn(1998, 7, 5));
 
 // This functions checks if the person is or above 18 years of age, return true/false
 function checkOverEighteenFn(year, month, day) {
-  let yearx = new Date();
-  let monthx = new Date();
-  let dayx = new Date();
-  if (yearx.getFullYear() < year + 18) return false;
-  else if (yearx.getFullYear() > year + 18) return true;
-  else if (monthx.getMonth() < month) return false;
-  else if (monthx.getMonth() > month) return true;
-  else if (dayx.getDate() > day) return false;
-  else if (dayx.getDate() <= day) return true;
-}
-console.log(checkOverEighteenFn(2003, 5, 19));
+  // Write your code here
+  let today = new Date();
+  let x=today.getFullYear()-18;
+  if (year<x) return true ;
+  if (year>x) return false ;
+  // year==x
+  if (month>(today.getMonth()+1)) return false;
+  else if(month<(today.getMonth()+1))return true ;
+  else if(month>(today.getMonth()+1))return false ;
+  else if(day<(today.getDate()+1))return true;
+  else return false ;
+  }
 
 
-function calculateAgeFn(year, month, day) {
-  if (!checkParamsFn) return "error " ;
-  else if (!checkOverEighteenFn) return "error :"
-  else {
-}
-}
+  function calculateAgeFn(year, month, day) {
+    // Write your code here
+    var today = new Date();
+    if ((!checkParamsFn(year, month, day)))return('error:one of the parameters at least is not integer');
+    if ((!checkOverEighteenFn(year, month, day)))return('error:she/he is less than eighteen');
+    const entiresuminDays=(year*12*30)+(month*30)+(day) ;
+    const currentsuminDays=((today.getFullYear())*12*30)+((today.getMonth()+1)*30)+((today.getDate()+1)) ;
+    return parseInt((currentsuminDays-entiresuminDays)/(12*30));
+  }
 
 // Look at the naming of the functions. it looks like salwaBaqer, where
 // the first letter of the first word is small, while the first letter of the
